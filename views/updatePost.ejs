@@ -1,0 +1,8 @@
+<form action="" method="post" autocomplete="off">
+    <label for="title">Title</label>
+    <input id="title" name="title" type="text" value="<%= post.title %> "> <br>
+    <label for="content">Content</label>
+    <textarea id="content" name="content"><%= post.content %></textarea><br>
+    <button name="published" value="false" type="submit">Save as unpublished</button>
+    <button name="published" value="true" type="submit">Post</button>
+</form>

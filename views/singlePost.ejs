@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Blog Api
+        </title>
+    </head>
+    <body>
+        <h3>
+            <%= post.title%> 
+            <% if (user) { %>
+                <% if (user.username === post.username) { %> 
+                    <div>
+                       <form action="<%= "edit/" + post._id %>" >
+                        <button type="submit">Edit</button>
+                       </form>
+                       <form action="<%= "delete/" + post._id %>">
+                        <button type="submit">Delete</button>
+                       </form>
+                    </div>
+                <% } %> 
+            <% } %>  
+        </h3>
+
+        <p>Published by: <%= post.username %> on <%= post.formattedCreationTime %> </p>
+        <p><%- post.content%> </p><hr>
+        <h5>Comments: (<%= post.comments.length %>)</h5>
+
+        <% if (!user) { %>
+            <form action="<%= "/login"%>">
+                <button type="submit">Sign in to comment</button>
+            </form>
+        <% } else {%> 
+            <form action="<%= "/posts/" + post._id + "/comments" %> " method="post">
+                <textarea id="content" name="content"></textarea>
+                <button type="submit">Add comment</button>
+            </form>
+        <% } %><hr>
+
+        <% post.comments.forEach(comment => { %>
+            <p><strong><%= comment.username %> </strong></p>
+            <p><%= comment.formattedCreationTime %> </p>
+            <p><%- comment.content %> </p>
+            <% if (user) { %>
+                <form action="<%= "/posts/" + post._id + "/comments/delete/" + comment._id%>" method="post">
+                  <button type="submit">Delete comment</button>
+                </form>
+            <% } %><hr>
+        <% }) %> 
+    </body>
+</html>

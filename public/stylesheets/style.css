@@ -1,0 +1,14 @@
+.navbar {
+  font-size: 10px;
+  color: blue;
+}
+#unique1 {
+  color: red;
+  font-size: 20px;
+}
+
+.navbarClass {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: greenyellow;
+  font-size: 20px;
+}

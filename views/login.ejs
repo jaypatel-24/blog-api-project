@@ -1,0 +1,27 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title><%= title %></title> 
+    
+</head> 
+<body> 
+  
+
+  <div class="container"> 
+      <% if (message.length > 0) { %> 
+          <div> <strong><%= message %>. </strong> </div> 
+       <% } %> 
+
+      <form action="/login" method="post"> 
+        <h2>Welcome, lets sign in</h2> 
+
+        <label for="username">Username</label> 
+        <input type="text" id="username" name="username" placeholder="username" required="true">
+        <label for="inputPassword">Password</label> 
+        <input type="password" id="password" name="password" placeholder="Password" required="true"> 
+        <button type="submit">Sign in</button><br> 
+        <p>Don't have an account? <a href="/users/signup">Signup</a> 
+      </form> 
+  </div> 
+</body> 
+</html> 

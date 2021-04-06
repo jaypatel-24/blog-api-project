@@ -1,0 +1,37 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title><%= title %></title> 
+    <link href="../public/stylesheets/style.css" rel="stylesheet" type="text/css">
+</head> 
+<body> 
+
+    <h1><%= title %></h1>
+
+    <% if (user) { %>
+        <p style="color: black">Hello, <%= user.fullname %> </p>
+        <form action="/users/logout/" method="post">
+            <button type="submit">Logout</button>
+        </form><br/>
+    <% } else {%>
+        <form action="/users/signup">
+            <button type="submit">Sign up</button>
+        </form><br/>
+
+        <form action="/login">
+            <button type="submit">Log In</button>
+        </form><br/>
+    <% } %> 
+  
+    <form action="" method="post">
+        <label for="title">Title</label>
+        <input id="title" name="title" type="text"><br/>
+        <label for="content">Content</label>
+        <textarea id="content" name="content"></textarea><br/>
+
+        <button name="published" value="false" type="submit">Save as unpublished</button>
+        <button name="published" value="true"  type="submit">Publish</button>
+    </form>   
+   
+</body> 
+</html> 

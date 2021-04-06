@@ -1,0 +1,71 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title><%= title %></title> 
+    <link href="../public/stylesheets/style.css" rel="stylesheet" type="text/css">
+</head> 
+<body> 
+
+<div class="navbar">
+  <h1 id="unique1"><%= title %></h1>
+  <div id="login_Logout">
+      <% if (!!user) { %>
+          <p id="unique" >Hello, <%= user.fullname %> </p>
+          <form action="/users/logout" method="post">
+              <button  class="button" type="submit">Logout</button>
+          </form>
+      <% } else { %> 
+          <form action="/users/signup">
+              <button class="button" type="submit">Sign up</button>
+          </form>
+          <form action="/login">
+              <button class="button" type="submit">Log In</button>
+          </form>
+      <% } %> 
+
+  </div>
+
+</div>
+<% if (errorMsg != "") { %>
+    <%= errorMsg %> 
+<% } %> 
+
+<div id="createPosts">
+  <% if (!!user) { %>
+      <form action="/posts">
+          <button type="submit">Create Post</button>
+      </form>
+      <form action="/posts/saved" method="GET">
+          <button type="submit">Unpublished Post</button>
+      </form>
+  <% } %> 
+</div>
+
+
+<% if (successMsg != "") { %>
+    <%= successMsg %> 
+<% } %> 
+
+
+<% if (posts) { %>
+  <% posts.forEach(post => { %>
+      <% if (!post.published) return %> 
+      <div>
+          <h3><a  href="<%= "posts/" + post._id %> ">
+                 <%= post.title %> 
+              </a>   
+          </h3>
+        </div> 
+
+          <div>
+              <h6>Published by: <%= post.username %> </h6>
+              <h6> <%= post.formattedCreationTime %> </h6>
+              <%- post.content %> 
+          </div>
+          <br>          
+      </div>
+  <% }) %> 
+<% } %>
+
+</body>
+</html>
